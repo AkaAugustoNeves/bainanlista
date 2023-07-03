@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  # ms-eureka-server:
+  #   container_name: ms-eureka-server
+  #   build: ./ms-eureka-server
+  #   ports:
+  #     - "8761:8761"
+  #   restart: always
+  #   networks:
+  #     - ms
+
+  db-baianalista:
+    container_name: db-baianalista
+    image: postgres
+    environment:
+      - POSTGRES_DB=db-baianalista
+      - POSTGRES_USER=db-baianalista
+      - POSTGRES_PASSWORD=db-baianalista
+      - PGDATA=/data/postgres
+    volumes:
+      - ./volume/v_db_baianalista:/data/postgres
+    ports:
+      - "5470:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  ms:
+    driver: bridge
+  db:
+    driver: bridge
