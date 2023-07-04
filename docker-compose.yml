@@ -20,6 +20,7 @@ services:
       - PGDATA=/data/postgres
     volumes:
       - ./volume/v_db_baianalista:/data/postgres
+      - ./db:/app
     ports:
       - "5470:5432"
     networks:
